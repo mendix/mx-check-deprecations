@@ -1,0 +1,37 @@
+{
+  "name": "mx-check-deprecations",
+  "version": "1.0.0",
+  "description": "Check deprecations (Mendix 6) in your Mendix widgets",
+  "main": "cli.js",
+  "bin": {
+    "mx-check-deprecations": "./bin/mx-check-deprecations"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mendix",
+    "deprecations"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JelteMX/mx-check-deprecations"
+  },
+  "bugs": {
+    "url": "https://github.com/JelteMX/mx-check-deprecations"
+  },
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "J.W. Lagendijk",
+    "email": "jelte.lagendijk@mendix.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.4.7",
+    "chalk": "^1.1.1",
+    "lodash": "^3.10.1",
+    "optimist": "^0.6.1",
+    "update-notifier": "^0.5.0",
+    "xml2js": "^0.4.15"
+  }
+}
