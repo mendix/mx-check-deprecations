@@ -30,7 +30,6 @@ var deprecations = {
 			reg: "mobile.dom",
 			solution: "mxui/dom"
 		},
-
 		{
 			name: "mendix.dom.liveconnect",
 			reg: "mendix.dom.liveconnect",
@@ -429,6 +428,7 @@ var deprecations = {
 			reg: "mx.xas.action",
 			solution: "mx.data.action"
 		},
+		// mx.data
 		{
 			name: "mx.data.distributeChange",
 			reg: "mx.data.distributeChange",
@@ -584,6 +584,7 @@ var deprecations = {
 			reg: "mx.data.floorOfXPathQuery",
 			solution: "mx.data.floorOfXPathSet"
 		},
+		// MxContext
 		{
 			name: "mendix.lib.MxContext#hasActiveClass",
 			reg: ".hasActiveClass",
@@ -614,7 +615,6 @@ var deprecations = {
 			reg: ".getTrackID",
 			solution: "mendix/lib/MxContext#getTrackId"
 		},
-
 		{
 			name: "mendix.lib.MxContext#setActiveClass",
 			reg: ".setActiveClass",
@@ -635,65 +635,67 @@ var deprecations = {
 			reg: ".setContextFromMxObject",
 			solution: "mendix/lib/MxContext#setContext"
 		},
+		// MxObject && MxMetaObject
 		{
-			name: "mendix.lib.MxObject#getGUID",
+			name: "mendix.lib.MxObject#getGUID OR mendix.lib.MxMetaObject#getGUID",
 			reg: ".getGUID",
-			solution: "mendix/lib/MxObject#getGuid"
+			solution: "mendix/lib/MxObject#getGuid OR mendix/lib/MxMetaObject#getGuid"
 		},
 		{
-			name: "mendix.lib.MxObject#getClass",
+			name: "mendix.lib.MxObject#getClass OR mendix.lib.MxMetaObject#getClass",
 			reg: ".getClass",
-			solution: "mendix/lib/MxObject#getEntity"
+			solution: "mendix/lib/MxObject#getEntity OR mendix.lib.MxMetaObject#getEntity"
 		},
+		{
+			name: "mendix.lib.MxObject#getAttributeClass OR mendix.lib.MxMetaObject#getAttributeClass",
+			reg: ".getAttributeClass",
+			solution: "mendix/lib/MxObject#getAttributeType OR mendix/lib/MxMetaObject#getAttributeType"
+		},
+		{
+			name: "mendix.lib.MxObject#inheritsOf OR mendix.lib.MxMetaObject#inheritsOf",
+			reg: ".inheritsOf",
+			solution: "mendix/lib/MxObject#inheritsFrom OR mendix/lib/MxMetaObject#inheritsFrom"
+		},
+		{
+			name: "mendix.lib.MxObject#hasSubClasses OR mendix.lib.MxMetaObject#hasSubClasses",
+			reg: ".hasSubClasses",
+			solution: "mendix/lib/MxObject#hasSubEntities OR mendix/lib/MxMetaObject#hasSubEntities"
+		},
+		{
+			name: "mendix.lib.MxObject#getSubClasses OR mendix.lib.MxMetaObject#getSubClasses",
+			reg: ".getSubClasses",
+			solution: "mendix/lib/MxObject#getSubEntities OR mendix/lib/MxMetaObject#getSubEntities"
+		},
+		{
+			name: "mendix.lib.MxObject#hasSuperClasses OR mendix.lib.MxMetaObject#hasSuperClasses",
+			reg: ".hasSuperClasses",
+			solution: "mendix/lib/MxObject#hasSuperEntities OR mendix/lib/MxMetaObject#hasSuperEntities"
+		},
+		{
+			name: "mendix.lib.MxObject#getSuperClasses OR mendix.lib.MxMetaObject#getSuperClasses",
+			reg: ".getSuperClasses",
+			solution: "mendix/lib/MxObject#getSuperEntities OR mendix/lib/MxMetaObject#getSuperEntities"
+		},
+		{
+			name: "mendix.lib.MxObject#getSelectorClass OR mendix.lib.MxMetaObject#getSelectorClass",
+			reg: ".getSelectorClass",
+			solution: "mendix/lib/MxObject#getSelectorEntity OR mendix/lib/MxMetaObject#getSelectorEntity"
+		},
+		//MxObject
 		{
 			name: "mendix.lib.MxObject#getAttribute",
-			reg: ".getAttribute",
+			reg: /\.getAttribute\(/,
 			solution: "mendix/lib/MxObject#get"
 		},
 		{
 			name: "mendix.lib.MxObject#setAttribute",
-			reg: ".setAttribute",
+			reg: /\.setAttribute\(/,
 			solution: "mendix/lib/MxObject#set"
 		},
 		{
-			name: "mendix.lib.MxObject#hasAttribute",
-			reg: ".hasAttribute",
-			solution: "mendix/lib/MxObject#has"
-		},
-		{
-			name: "mendix.lib.MxObject#getAttributeClass",
-			reg: ".getAttributeClass",
-			solution: "mendix/lib/MxObject#getAttributeType"
-		},
-		{
-			name: "mendix.lib.MxObject#inheritsOf",
-			reg: ".inheritsOf",
-			solution: "mendix/lib/MxObject#inheritsFrom"
-		},
-		{
-			name: "mendix.lib.MxObject#hasSubClasses",
-			reg: ".hasSubClasses",
-			solution: "mendix/lib/MxObject#hasSubEntities"
-		},
-		{
-			name: "mendix.lib.MxObject#getSubClasses",
-			reg: ".getSubClasses",
-			solution: "mendix/lib/MxObject#getSubEntities"
-		},
-		{
-			name: "mendix.lib.MxObject#hasSuperClasses",
-			reg: ".hasSuperClasses",
-			solution: "mendix/lib/MxObject#hasSuperEntities"
-		},
-		{
-			name: "mendix.lib.MxObject#getSuperClasses",
-			reg: ".getSuperClasses",
-			solution: "mendix/lib/MxObject#getSuperEntities"
-		},
-		{
-			name: "mendix.lib.MxObject#getSelectorClass",
-			reg: ".getSelectorClass",
-			solution: "mendix/lib/MxObject#getSelectorEntity"
+			name: "mendix.lib.MxObject#hasAttribute OR mendix.lib.MxMetaObject#hasAttribute",
+			reg: /\.hasAttribute\(/,
+			solution: "mendix/lib/MxObject#has OR mendix/lib/MxMetaObject#has"
 		},
 		{
 			name: "mendix.lib.MxObject#save",
@@ -702,12 +704,12 @@ var deprecations = {
 		},
 		{
 			name: "mendix.lib.MxObject#commit",
-			reg: ".commit",
+			reg: /(!mx\.data)\.commit/,
 			solution: "mx.data.commit"
 		},
 		{
 			name: "mendix.lib.MxObject#rollback",
-			reg: ".rollback",
+			reg: /(!mx\.data)\.rollback/,
 			solution: "mx.data.rollback"
 		},
 		{
@@ -715,56 +717,6 @@ var deprecations = {
 			reg: ".saveSequence",
 			solution: "mx.data.save + mx.data.commit"
 		},
-		{
-			name: "mendix.lib.MxMetaObject#getGUID",
-			reg: ".getGUID",
-			solution: "mendix/lib/MxMetaObject#getGuid"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#getClass",
-			reg: ".getClass",
-			solution: "mendix/lib/MxMetaObject#getEntity"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#hasAttribute",
-			reg: ".hasAttribute",
-			solution: "mendix/lib/MxMetaObject#has"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#getAttributeClass",
-			reg: ".getAttributeClass",
-			solution: "mendix/lib/MxMetaObject#getAttributeType"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#inheritsOf",
-			reg: ".inheritsOf",
-			solution: "mendix/lib/MxMetaObject#inheritsFrom"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#hasSubClasses",
-			reg: ".hasSubClasses",
-			solution: "mendix/lib/MxMetaObject#hasSubEntities"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#getSubClasses",
-			reg: ".getSubClasses",
-			solution: "mendix/lib/MxMetaObject#getSubEntities"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#hasSuperClasses",
-			reg: ".hasSuperClasses",
-			solution: "mendix/lib/MxMetaObject#hasSuperEntities"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#getSuperClasses",
-			reg: ".getSuperClasses",
-			solution: "mendix/lib/MxMetaObject#getSuperEntities"
-		},
-		{
-			name: "mendix.lib.MxMetaObject#getSelectorClass",
-			reg: ".getSelectorClass",
-			solution: "mendix/lib/MxMetaObject#getSelectorEntity"
-		}
 	]
 };
 
