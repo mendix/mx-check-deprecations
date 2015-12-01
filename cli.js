@@ -18,9 +18,13 @@ var argv = optimist
 	].join('\n'))
 	.boolean('d')
 	.alias('d', 'update-deprecations')
-		.describe('d', 'Update the list with deprecations from Github (not available yet)')
+		.describe('d', 'Update the list with deprecations from Github (not implemented yet)')
+    .boolean('u')
 	.alias('u', 'update')
         .describe('u', 'Checks if there is an update for mx-check-deprecations')
+    .boolean('c')
+    .alias('e', 'excel')
+        .describe('c', 'Output to Excel file : deprecations.xlsx')
 	.alias('h', 'help')
         .describe('h', 'Shows this help screen')
 	.argv;
@@ -50,5 +54,5 @@ if (argv.update) {
     console.log(optimist.help());
     process.exit(0);
 } else {
-    Checker.checkFiles(files, currentFolder);
+    Checker.checkFiles(files, currentFolder, argv.excel);
 }
