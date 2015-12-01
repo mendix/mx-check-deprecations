@@ -15,10 +15,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JelteMX/mx-check-deprecations"
+    "url": "https://github.com/mendix/mx-check-deprecations"
   },
   "bugs": {
-    "url": "https://github.com/JelteMX/mx-check-deprecations"
+    "url": "https://github.com/mendix/mx-check-deprecations"
   },
   "readmeFilename": "README.md",
   "author": {
