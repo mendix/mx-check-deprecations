@@ -1,6 +1,8 @@
 # Mendix Deprecation checker for widgets
 
-This tool is in beta. It checks your .MPK files (widgets) for any Mendix 6 Javascript deprecations.
+**This tool is in beta**
+
+It will check your .MPK (widget) files for possible Javascript deprecations that will break your widget in the new [Mendix 6 release](https://world.mendix.com/display/ReleaseNotes/6.0.0). Check the [Mendix 6 client API](https://apidocs.mendix.com/6/client/), as well as the [documented deprecations](https://world.mendix.com/display/refguide6/Moving+from+5+to+6#Movingfrom5to6-RemovedDeprecatedFunctionality).
 
 ## Install
 
@@ -28,17 +30,30 @@ Or check a single widget / list of widgets:
 	mx-check-deprecations WidgetFile.mpk WidgetFile2.mpk ...
 ```
 
-## Help
+## Further options
 
-```bash
-	mx-check-deprecations -h
+```
+	> mx-check-deprecations -h
+
+================ Mendix Check Deprecations for Mendix 6 ================
+
+Usage : mx-check-deprecations [OPTIONS] [<file.mpk> <file.mpk> <file.mpk> ... ]
+
+Either check individual files, or the whole folder
+
+Options:
+  -d, --update-deprecations  Update the list with deprecations from Github (not implemented yet)
+  -u, --update               Checks if there is an update for mx-check-deprecations
+  -c                         Output to Excel file : deprecations.xlsx
+  -h, --help                 Shows this help screen
+
 ```
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Jelte Lagendijk
+Copyright (c) 2015 Mendix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
