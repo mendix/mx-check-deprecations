@@ -8,7 +8,13 @@ var optimist = require('optimist'),
     pkg = require('./package.json');
 
 var Checker = require('./lib/checker');
-var banner = '\n\n  ================ Mendix Check Deprecations for Mendix 6 ================ \n\n';
+var banner = [
+    '',
+    '',
+    ' ================ Mendix Check Deprecations for Mendix 6 ================',
+    '                           -- version ' + pkg.version + ' --',
+    ''
+].join('\n');
 
 var argv = optimist
 	.usage([
@@ -22,9 +28,9 @@ var argv = optimist
     .boolean('u')
 	.alias('u', 'update')
         .describe('u', 'Checks if there is an update for mx-check-deprecations')
-    .boolean('c')
+    .boolean('e')
     .alias('e', 'excel')
-        .describe('c', 'Output to Excel file : deprecations.xlsx')
+        .describe('e', 'Output to Excel file : deprecations.xlsx')
 	.alias('h', 'help')
         .describe('h', 'Shows this help screen')
 	.argv;

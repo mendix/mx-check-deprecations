@@ -44,7 +44,7 @@ Either check individual files, or the whole folder
 Options:
   -d, --update-deprecations  Update the list with deprecations from Github (not implemented yet)
   -u, --update               Checks if there is an update for mx-check-deprecations
-  -c                         Output to Excel file : deprecations.xlsx
+  -e, --excel                Output to Excel file : deprecations.xlsx
   -h, --help                 Shows this help screen
 
 ```
