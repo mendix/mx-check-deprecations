@@ -1,5 +1,9 @@
 # Mendix Deprecation checker for widgets
 
+[![NPM](https://nodei.co/npm/mx-check-deprecations.svg?downloads=true&stars=true)](https://nodei.co/npm/mx-check-deprecations/)
+[![DAVID](https://david-dm.org/mendix/mx-check-deprecations.svg)](https://david-dm.org/mendix/mx-check-deprecations)
+[![npm version](https://badge.fury.io/js/mx-check-deprecations.svg)](http://badge.fury.io/js/mx-check-deprecations)
+
 **This tool is in beta**
 
 It will check your .MPK (widget) files for possible Javascript deprecations that will break your widget in the new [Mendix 6 release](https://world.mendix.com/display/ReleaseNotes/6.0.0). Check the [Mendix 6 client API](https://apidocs.mendix.com/6/client/), as well as the [documented deprecations](https://world.mendix.com/display/refguide6/Moving+from+5+to+6#Movingfrom5to6-RemovedDeprecatedFunctionality).
