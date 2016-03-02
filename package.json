@@ -1,6 +1,6 @@
 {
   "name": "mx-check-deprecations",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Check deprecations (Mendix 6) in your Mendix widgets",
   "main": "cli.js",
   "bin": {
@@ -29,9 +29,9 @@
   "dependencies": {
     "adm-zip": "^0.4.7",
     "chalk": "^1.1.1",
-    "lodash": "^3.10.1",
+    "lodash": "4.6.0",
     "optimist": "^0.6.1",
-    "update-notifier": "^0.5.0",
+    "update-notifier": "0.6.1",
     "xlsx": "^0.8.0",
     "xml2js": "^0.4.15"
   }

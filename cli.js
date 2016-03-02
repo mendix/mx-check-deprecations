@@ -17,23 +17,23 @@ var banner = [
 ].join('\n');
 
 var argv = optimist
-	.usage([
-		' Usage : ' + chalk.bold.cyan('mx-check-deprecations [OPTIONS] [<file.mpk> <file.mpk> <file.mpk> ... ]'),
-		'',
+  .usage([
+    ' Usage : ' + chalk.bold.cyan('mx-check-deprecations [OPTIONS] [<file.mpk> <file.mpk> <file.mpk> ... ]'),
+    '',
         ' Either check individual files, or the whole folder'
-	].join('\n'))
-	.boolean('d')
-	.alias('d', 'update-deprecations')
-		.describe('d', 'Update the list with deprecations from Github (not implemented yet)')
+  ].join('\n'))
+  .boolean('d')
+  .alias('d', 'update-deprecations')
+    .describe('d', 'Update the list with deprecations from Github (not implemented yet)')
     .boolean('u')
-	.alias('u', 'update')
+  .alias('u', 'update')
         .describe('u', 'Checks if there is an update for mx-check-deprecations')
     .boolean('e')
     .alias('e', 'excel')
         .describe('e', 'Output to Excel file : deprecations.xlsx')
-	.alias('h', 'help')
+  .alias('h', 'help')
         .describe('h', 'Shows this help screen')
-	.argv;
+  .argv;
 
 var files = argv._;
 
