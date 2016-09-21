@@ -39,17 +39,20 @@ Or check a single widget / list of widgets:
 ```
 	> mx-check-deprecations -h
 
-================ Mendix Check Deprecations for Mendix 6 ================
+  ================ Mendix Check Deprecations for Mendix ================
+                            -- version 1.2.0 --
 
-Usage : mx-check-deprecations [OPTIONS] [<file.mpk> <file.mpk> <file.mpk> ... ]
+  Usage : mx-check-deprecations [OPTIONS] [<file.mpk> <file.mpk> <file.mpk> ... ]
 
-Either check individual files, or the whole folder
+  Either check individual files, or the whole folder
 
-Options:
-  -d, --update-deprecations  Update the list with deprecations from Github (not implemented yet)
-  -u, --update               Checks if there is an update for mx-check-deprecations
-  -e, --excel                Output to Excel file : deprecations.xlsx
-  -h, --help                 Shows this help screen
+ Options:
+   -d, --update-deprecations  Update the list with deprecations from Github (not implemented yet)
+   -u, --update               Checks if there is an update for mx-check-deprecations
+   -e, --excel                Output to Excel file : deprecations.xlsx
+   -v, --verbose              Verbose output
+   -s, --string               Search for a specific string
+   -h, --help                 Shows this help screen
 
 ```
 
