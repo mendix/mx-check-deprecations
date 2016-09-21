@@ -11,7 +11,7 @@ var Checker = require('./lib/checker');
 var banner = [
     '',
     '',
-    ' ================ Mendix Check Deprecations for Mendix 6 ================',
+    ' ================ Mendix Check Deprecations for Mendix ================ ',
     '                           -- version ' + pkg.version + ' --',
     ''
 ].join('\n');
@@ -25,12 +25,18 @@ var argv = optimist
   .boolean('d')
   .alias('d', 'update-deprecations')
     .describe('d', 'Update the list with deprecations from Github (not implemented yet)')
-    .boolean('u')
-  .alias('u', 'update')
-        .describe('u', 'Checks if there is an update for mx-check-deprecations')
-    .boolean('e')
+  .boolean('u')
+    .alias('u', 'update')
+    .describe('u', 'Checks if there is an update for mx-check-deprecations')
+  .boolean('e')
     .alias('e', 'excel')
-        .describe('e', 'Output to Excel file : deprecations.xlsx')
+    .describe('e', 'Output to Excel file : deprecations.xlsx')
+  .boolean('v')
+    .alias('v', 'verbose')
+    .describe('v', 'Verbose output')
+  .string('s')
+    .alias('s', 'string')
+    .describe('s', 'Search for a specific string')
   .alias('h', 'help')
         .describe('h', 'Shows this help screen')
   .argv;
@@ -56,9 +62,15 @@ if (argv.update) {
             process.exit(0);
         }
     });
-} else if (argv.help) {
+} else if (argv.help || argv.string === '') {
     console.log(optimist.help());
     process.exit(0);
 } else {
-    Checker.checkFiles(files, currentFolder, argv.excel);
+    Checker.checkFiles({
+      fileList: files,
+      folder: currentFolder,
+      toExcel: argv.excel,
+      searchString: argv.string,
+      verbose: argv.verbose
+    });
 }

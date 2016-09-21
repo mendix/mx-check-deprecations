@@ -1,6 +1,6 @@
 {
   "name": "mx-check-deprecations",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Check deprecations (Mendix 6) in your Mendix widgets",
   "main": "cli.js",
   "bin": {

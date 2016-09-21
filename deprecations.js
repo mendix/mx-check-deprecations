@@ -207,7 +207,7 @@ var deprecations = {
     },
     {
       name: "mx.ui.confirm",
-      reg: "mx.ui.confirm",
+      reg: "mx.ui.confirm\\(",
       solution: "mx.ui.confirmation"
     },
     {
