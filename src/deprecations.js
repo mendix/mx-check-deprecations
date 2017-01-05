@@ -1,4 +1,4 @@
-var deprecations = {
+const deprecations = {
   'mx6' : [
     {
       name: "mendix.dom",

@@ -2,3 +2,4 @@ node_modules
 *.mpk
 *DS_Store*
 *.xlsx
+*.log
