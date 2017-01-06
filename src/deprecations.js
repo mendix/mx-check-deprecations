@@ -288,7 +288,7 @@ module.exports = [
   },
   {
     name: "mx.ui.confirm",
-    reg: "mx.ui.confirm\\(",
+    reg: "mx.ui.confirm\\\(",
     solution: "mx.ui.confirmation",
     version: 6,
     comment: null
