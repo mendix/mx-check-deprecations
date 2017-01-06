@@ -553,6 +553,13 @@ module.exports = [
     comment: null
   },
   {
+    name: "mendix.lang.nullExec",
+    reg: "mendix.lang.nullExec",
+    solution: "Use plain Javascript",
+    version: 7,
+    comment: null
+  },
+  {
     name: "mendix/lang.collect(scope, chain, callback)",
     reg: "mendix/lang.collect(scope, chain, callback)",
     solution: "mendix/lang.collect(chain, callback, scope)",
@@ -1001,7 +1008,7 @@ module.exports = [
     name: "templatePath",
     reg: "templatePath",
     solution: "templateString with \"dojo/text!\"",
-    version: 6.10,
-    comment: null
+    version: 6,
+    comment: "From 6.10 templatePath is not working anymore in Phonegap"
   },
 ];
