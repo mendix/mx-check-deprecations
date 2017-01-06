@@ -1,15 +1,14 @@
-/* require XLSX */
-var XLSX = require('xlsx');
+const XLSX = require('xlsx');
 
 function datenum(v, date1904) {
   if (date1904) v += 1462;
-  var epoch = Date.parse(v);
+  const epoch = Date.parse(v);
   return (epoch - new Date(Date.UTC(1899, 11, 30))) / (24 * 60 * 60 * 1000);
 }
 
-function sheet_from_array_of_arrays(data, opts) {
-  var ws = {};
-  var range = {
+function sheet_from_array_of_arrays(data) {
+  let ws = {};
+  let range = {
     s: {
       c: 10000000,
       r: 10000000
@@ -49,32 +48,34 @@ function sheet_from_array_of_arrays(data, opts) {
   return ws;
 }
 
-function Workbook() {
+class Workbook {
+  constructor() {
     if (!(this instanceof Workbook)) return new Workbook();
     this.SheetNames = [];
     this.Sheets = {};
+  }
 }
 
-function Writer () {
-  this.wb = new Workbook();
-  this.sheetName = 'Deprecations';
-  this.data = [];
+module.exports = class Writer {
+  constructor() {
+    this.wb = new Workbook();
+    this.sheetName = 'Deprecations';
+    this.data = [];
+  }
+
+  setHeader(data) {
+    this.data = [];
+    this.data.push(data);
+  }
+
+  addLine(data) {
+    this.data.push(data);
+  }
+
+  writeFile(filename) {
+    this.wb.SheetNames.push(this.sheetName);
+    this.wb.Sheets[this.sheetName] = sheet_from_array_of_arrays(this.data);
+
+    XLSX.writeFile(this.wb, filename, { bookSST: true });
+  }
 }
-
-Writer.prototype.setHeader = function (data) {
-  this.data = [];
-  this.data.push(data);
-};
-
-Writer.prototype.addLine = function (data) {
-  this.data.push(data);
-};
-
-Writer.prototype.writeFile = function () {
-  this.wb.SheetNames.push(this.sheetName);
-  this.wb.Sheets[this.sheetName] = sheet_from_array_of_arrays(this.data);
-
-  XLSX.writeFile(this.wb, 'deprecations.xlsx', { bookSST: true });
-};
-
-module.exports = Writer;
