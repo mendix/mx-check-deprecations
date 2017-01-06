@@ -997,4 +997,11 @@ module.exports = [
     version: 6,
     comment: null
   },
+  {
+    name: "templatePath",
+    reg: "templatePath",
+    solution: "templateString with \"dojo/text!\"",
+    version: 6.10,
+    comment: null
+  },
 ];

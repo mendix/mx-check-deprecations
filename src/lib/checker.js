@@ -204,7 +204,7 @@ module.exports = function check (options) {
       console.log(`          /\\_/\\\n     ____/ ${chalk.cyan("o o")} \\\n   /~____  =ø= /\n  (______)__m_m) ${chalk.dim("Just wait a little longer for this version....")}\n ==========================================================================\n`);
       process.exit(1);
     } else {
-      deprecations_list = _.filter(deprecations_list, d => d.version === options.version);
+      deprecations_list = _.filter(deprecations_list, d => d.version === options.version || d.version.toString() === options.version);
       if (deprecations_list.length === 0) {
         console.log(` No deprecations found`);
         process.exit(1);
