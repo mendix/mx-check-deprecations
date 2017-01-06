@@ -22,6 +22,7 @@
   "bugs": {
     "url": "https://github.com/mendix/mx-check-deprecations"
   },
+  "deprecation_url": "https://raw.githubusercontent.com/mendix/mx-check-deprecations/v2/src/deprecations.js",
   "readmeFilename": "README.md",
   "author": {
     "name": "J.W. Lagendijk",

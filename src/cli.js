@@ -7,9 +7,10 @@ const check = require('./lib/checker');
 
 const banner = [
     '',
-    '',
     ' ================ Mendix Check Deprecations for Mendix ================ ',
-    '                           -- version ' + pkg.version + ' --',
+    ` Version: ${chalk.cyan(pkg.version)}`,
+    '',
+    ' ======================================================================',
     ''
 ].join('\n');
 
@@ -59,6 +60,9 @@ if (argv.update) {
             process.exit(0);
         }
     });
+} else if (argv.d) {
+  console.log('not implemented yet');
+
 } else if (argv.help || argv.string === '') {
     console.log(optimist.help());
     process.exit(0);

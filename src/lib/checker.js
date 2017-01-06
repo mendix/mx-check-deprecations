@@ -6,7 +6,7 @@ const MpkArchive = require('./mpk');
 const chalk = require('chalk');
 const Promise = require('bluebird');
 
-const deprecations_list = require('../deprecations')['mx6']; // for now we only check for mx6 deprecations
+const deprecations_list = require('../deprecations'); // for now we only check for mx6 deprecations
 
 let excelOutput = null;
 let write = false;
@@ -40,9 +40,8 @@ const checkDeprecation = (line, linenumber, deprecation) => new Promise(resolve 
       resolve({
         line: linenumber,
         column: match.index,
-        deprecation: deprecation.name,
-        match: slice,
-        solution: deprecation.solution
+        deprecation: deprecation,
+        match: slice
       })
     } else {
       resolve(null);
@@ -96,8 +95,9 @@ const checkFile = (mpk, options) => {
             _.each(entryResult.result, res => {
               spotted++;
               let line = `${cyan(' line:')} ${res.line} || ${cyan('column:')} ${res.column} `;
-              line += options.search ? '' : `\n ${cyan('deprecation:')} ${res.deprecation} `;
-              line += res.solution ? `|| ${cyan('solution:')} ${res.solution}` : '';
+              line += options.search ? '' : `\n ${cyan('deprecation:')} ${res.deprecation.name} `;
+              line += res.deprecation.solution ? `|| ${cyan('solution:')} ${res.deprecation.solution}` : '';
+              line += res.deprecation.version ? `|| ${cyan('version:')} ${res.deprecation.version}` : '';
               console.log(line);
               console.log(` ${cyan('match: ')} ${chalk.dim(res.match)}\n`);
 
@@ -108,8 +108,9 @@ const checkFile = (mpk, options) => {
                   entryResult.entry.path,
                   res.line,
                   res.column,
-                  res.deprecation,
-                  res.solution,
+                  res.deprecation.name,
+                  res.deprecation.solution,
+                  res.deprecation.version,
                   res.match
                 ]);
               }
@@ -132,7 +133,7 @@ const checkFile = (mpk, options) => {
 
 const checkFiles = (options) => {
   const fileList = options.files;
-  console.log(`Reading ${fileList.length} files`);
+  console.log(` Reading ${cyan(fileList.length)} files`);
   const widgets = _.chain(fileList)
     .map(file => {
       let mpk;
@@ -155,7 +156,7 @@ const checkFiles = (options) => {
     .compact()
     .value();
 
-  console.log(`Checking ${widgets.length} widgets`);
+  console.log(` Checking ${cyan(widgets.length)} widgets`);
   Promise.all(_.map(widgets, widget => checkFile(widget, options))).then(() => {
     if (excelOutput && write) {
       excelOutput.writeFile('deprecations.xlsx');
@@ -178,6 +179,7 @@ module.exports = function check (options) {
       'column',
       'deprecation',
       'solution',
+      'version',
       'match'
     ]);
   }
@@ -195,7 +197,8 @@ module.exports = function check (options) {
     list: typeof options.searchString === 'string' ? [{
       name: options.searchString,
       reg: options.searchString,
-      solution: null
+      solution: null,
+      version: null
     }] : deprecations_list
   });
 }

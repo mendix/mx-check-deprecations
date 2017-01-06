@@ -72,10 +72,10 @@ module.exports = class Writer {
     this.data.push(data);
   }
 
-  writeFile() {
+  writeFile(filename) {
     this.wb.SheetNames.push(this.sheetName);
     this.wb.Sheets[this.sheetName] = sheet_from_array_of_arrays(this.data);
 
-    XLSX.writeFile(this.wb, 'deprecations.xlsx', { bookSST: true });
+    XLSX.writeFile(this.wb, filename, { bookSST: true });
   }
 }
