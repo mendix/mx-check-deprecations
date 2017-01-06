@@ -6,7 +6,7 @@ const MpkArchive = require('./mpk');
 const chalk = require('chalk');
 const Promise = require('bluebird');
 
-const deprecations_list = require('../deprecations'); // for now we only check for mx6 deprecations
+let deprecations_list = require('../deprecations'); // for now we only check for mx6 deprecations
 
 let excelOutput = null;
 let write = false;
@@ -171,9 +171,9 @@ const checkFiles = (options) => {
     if (excelOutput && write) {
       excelOutput.writeFile('deprecations.xlsx');
     }
-    console.log(' ==========================================================================');
+    console.log(' ======================================================================');
     console.log(` Done: Checker spotted ${cyan(spotted)} results`);
-    console.log(' ==========================================================================');
+    console.log(' ======================================================================');
   })
 }
 
@@ -195,8 +195,21 @@ module.exports = function check (options) {
   }
   var files = _.filter((options.fileList.length === 0 ? fs.readdirSync(folder) : options.fileList), file => path.parse(file)['ext'] === '.mpk');
   if (files.length === 0) {
-    console.log('No .mpk files found');
+    console.log(chalk.red(' No .mpk files found'));
     return false;
+  }
+
+  if (options.version) {
+    if (options.version > 7) {
+      console.log(`          /\\_/\\\n     ____/ ${chalk.cyan("o o")} \\\n   /~____  =ø= /\n  (______)__m_m) ${chalk.dim("Just wait a little longer for this version....")}\n ======================================================================`);
+      process.exit(1);
+    } else {
+      deprecations_list = _.filter(deprecations_list, d => d.version === options.version);
+      if (deprecations_list.length === 0) {
+        console.log(` No deprecations found`);
+        process.exit(1);
+      }
+    }
   }
 
   checkFiles({
