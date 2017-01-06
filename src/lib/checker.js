@@ -171,9 +171,9 @@ const checkFiles = (options) => {
     if (excelOutput && write) {
       excelOutput.writeFile('deprecations.xlsx');
     }
-    console.log(' ======================================================================');
+    console.log(' ==========================================================================');
     console.log(` Done: Checker spotted ${cyan(spotted)} results`);
-    console.log(' ======================================================================');
+    console.log(' ==========================================================================');
   })
 }
 
@@ -201,7 +201,7 @@ module.exports = function check (options) {
 
   if (options.version) {
     if (options.version > 7) {
-      console.log(`          /\\_/\\\n     ____/ ${chalk.cyan("o o")} \\\n   /~____  =ø= /\n  (______)__m_m) ${chalk.dim("Just wait a little longer for this version....")}\n ======================================================================`);
+      console.log(`          /\\_/\\\n     ____/ ${chalk.cyan("o o")} \\\n   /~____  =ø= /\n  (______)__m_m) ${chalk.dim("Just wait a little longer for this version....")}\n ==========================================================================\n`);
       process.exit(1);
     } else {
       deprecations_list = _.filter(deprecations_list, d => d.version === options.version);

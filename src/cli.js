@@ -17,9 +17,9 @@ const writeFile = Promise.promisify(fs.writeFile);
 
 const banner = [
     '',
-    ' ================ Mendix Check Deprecations for Mendix ================ ',
+    ' ================== Mendix Check Deprecations for Mendix ================== ',
     ` Version: ${chalk.cyan(pkg.version)}`,
-    ' ======================================================================',
+    ' ==========================================================================',
     ''
 ].join('\n');
 
