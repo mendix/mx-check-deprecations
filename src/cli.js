@@ -1,4 +1,4 @@
-const optimist = require('optimist');
+const yargs = require('yargs');
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const currentFolder = require('path').resolve('./') + '/';
@@ -14,11 +14,11 @@ const banner = [
     ''
 ].join('\n');
 
-const argv = optimist
+const argv = yargs
   .usage([
     ' Usage : ' + chalk.bold.cyan('mx-check-deprecations [OPTIONS] [<file.mpk> <file.mpk> <file.mpk> ... ]'),
     '',
-        ' Either check individual files, or the whole folder'
+    ' Either check individual files, or the whole folder'
   ].join('\n'))
   .boolean('d')
   .alias('d', 'update-deprecations')
@@ -35,8 +35,18 @@ const argv = optimist
   .string('s')
     .alias('s', 'string')
     .describe('s', 'Search for a specific string')
+  .help('h')
   .alias('h', 'help')
-        .describe('h', 'Shows this help screen')
+    .describe('h', 'Shows this help screen')
+  .check((hash) => {
+    if (typeof hash.string !== 'undefined' && hash.string === '') {
+      return Error(chalk.red('string cannot be empty\n'));
+    }
+    if (hash.d) {
+      return Error(chalk.red('not implemented yet\n'));
+    }
+    return true;
+  })
   .argv;
 
 const files = argv._;
@@ -44,34 +54,28 @@ const files = argv._;
 console.log(banner);
 
 if (argv.update) {
-    console.log(chalk.cyan('\n Checking for an update'));
-    updateNotifier({
-        pkg: pkg,
-        callback: (err, update) => {
-            if (err) {
-                console.log(chalk.red('\n\n Error checking the update : '), err);
-            } else {
-                if (update.latest !== update.current) {
-                    console.log(chalk.green(' Update available! Run ') + chalk.bold.cyan('npm update -g mx-check-deprecations') + chalk.green(' to install version ') + chalk.bold.cyan(update.latest) + '\n');
-                } else {
-                    console.log(chalk.green(' You are running the latest version :-)\n'));
-                }
-            }
-            process.exit(0);
+  console.log(chalk.cyan('\n Checking for an update'));
+  updateNotifier({
+    pkg: pkg,
+    callback: (err, update) => {
+      if (err) {
+        console.log(chalk.red('\n\n Error checking the update : '), err);
+      } else {
+        if (update.latest !== update.current) {
+          console.log(chalk.green(' Update available! Run ') + chalk.bold.cyan('npm update -g mx-check-deprecations') + chalk.green(' to install version ') + chalk.bold.cyan(update.latest) + '\n');
+        } else {
+          console.log(chalk.green(' You are running the latest version :-)\n'));
         }
-    });
-} else if (argv.d) {
-  console.log('not implemented yet');
-
-} else if (argv.help || argv.string === '') {
-    console.log(optimist.help());
-    process.exit(0);
+      }
+      process.exit(0);
+    }
+  });
 } else {
-    check({
-      fileList: files,
-      folder: currentFolder,
-      toExcel: argv.excel,
-      searchString: argv.string,
-      verbose: argv.verbose
-    });
+  check({
+    fileList: files,
+    folder: currentFolder,
+    toExcel: argv.excel,
+    searchString: argv.string,
+    verbose: argv.verbose
+  });
 }

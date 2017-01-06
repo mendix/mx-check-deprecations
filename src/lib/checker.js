@@ -94,12 +94,16 @@ const checkFile = (mpk, options) => {
             console.log(` ${cyan(entryResult.entry.path)} results:\n`);
             _.each(entryResult.result, res => {
               spotted++;
-              let line = `${cyan(' line:')} ${res.line} || ${cyan('column:')} ${res.column} `;
+              let line = `${cyan(' location:    line:')} ${res.line}, ${cyan('column:')} ${res.column} `;
               line += options.search ? '' : `\n ${cyan('deprecation:')} ${res.deprecation.name} `;
               line += res.deprecation.solution ? `|| ${cyan('solution:')} ${res.deprecation.solution}` : '';
-              line += res.deprecation.version ? `|| ${cyan('version:')} ${res.deprecation.version}` : '';
+              line += res.deprecation.version ? ` || ${cyan('version:')} ${res.deprecation.version}` : '';
               console.log(line);
-              console.log(` ${cyan('match: ')} ${chalk.dim(res.match)}\n`);
+              console.log(` ${cyan('match:')}       ${chalk.dim(res.match)}`);
+              if (res.deprecation.comment) {
+                console.log(` ${cyan('comment: ')}    ${chalk.dim.white(res.deprecation.comment)}`);
+              }
+              console.log('');
 
               if (excelOutput) {
                 excelOutput.addLine([
@@ -156,7 +160,13 @@ const checkFiles = (options) => {
     .compact()
     .value();
 
+  let discard = fileList.length - widgets.length;
   console.log(` Checking ${cyan(widgets.length)} widgets`);
+  if (!options.verbose && discard > 0) {
+    console.log(` Discarding ${cyan(discard)} files, use ${cyan('verbose (-v)')} option to see why`);
+  }
+  console.log('');
+
   Promise.all(_.map(widgets, widget => checkFile(widget, options))).then(() => {
     if (excelOutput && write) {
       excelOutput.writeFile('deprecations.xlsx');
