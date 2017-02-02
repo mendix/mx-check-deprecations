@@ -999,7 +999,7 @@ module.exports = [
   },
   {
     name: "mendix.lib.MxObject#saveSequence",
-    reg: ".saveSequence",
+    reg: /\.saveSequence/,
     solution: "mx.data.save + mx.data.commit",
     version: 6,
     comment: null
@@ -1025,4 +1025,21 @@ module.exports = [
     version: 7,
     comment: "See AppStoreWidgetBoilerplate on Github (https://github.com/mendix/AppStoreWidgetBoilerplate)"
   },
+  {
+    name: "mx.data.save",
+    reg: /mx\.data\.save/,
+    solution: "Don't use it, see comment",
+    version: 7,
+    comment:
+      "The 'mx.data.save' function does not have any effect anymore. " +
+      "MxObjects are now automatically saved as part of " +
+      "'mx.data.commit', 'mx.data.rollback', 'mx.data.action' and 'mx.data.saveDocument'"
+  },
+  {
+    name: "store.caller argument of mx.data.action",
+    reg: /caller\: this\.mxform/,
+    solution: "The originating page should be passed to mx.data.action as 'origin' instead.",
+    version: 7,
+    comment: "See: https://apidocs.mendix.com/6/client/mx.data.html#.action"
+  }
 ];
