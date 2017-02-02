@@ -92,7 +92,7 @@ module.exports = [
   },
   {
     name: "mxui.dom.textContent",
-    reg: ".textContent",
+    reg: /\.textContent/,
     solution: "mxui.dom.text",
     version: 6,
     comment: null
@@ -557,7 +557,7 @@ module.exports = [
     reg: "mendix.lang.nullExec",
     solution: "Use plain Javascript",
     version: 7,
-    comment: null
+    comment: "Was introduced in widgets in Mendix 6, but undocumented. This is deprecated and will be removed in Mendix 8"
   },
   {
     name: "mendix/lang.collect(scope, chain, callback)",
@@ -1010,5 +1010,19 @@ module.exports = [
     solution: "templateString with \"dojo/text!\"",
     version: 6,
     comment: "From 6.10 templatePath is not working anymore in Phonegap"
+  },
+  {
+    name: "dojo.require",
+    reg: /dojo\.require/,
+    solution: "AMD Style for custom widgets",
+    version: 7,
+    comment: "See AppStoreWidgetBoilerplate on Github (https://github.com/mendix/AppStoreWidgetBoilerplate)"
+  },
+  {
+    name: "dojo.provide",
+    reg: /dojo\.provide/,
+    solution: "AMD Style for custom widgets",
+    version: 7,
+    comment: "See AppStoreWidgetBoilerplate on Github (https://github.com/mendix/AppStoreWidgetBoilerplate)"
   },
 ];
