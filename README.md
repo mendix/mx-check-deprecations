@@ -10,7 +10,7 @@ It will check your .MPK (widget) files for possible Javascript deprecations that
 
 ## Install
 
-Make sure you have the [latest NodeJS LTS](https://nodejs.org/en/) version installed (this checker might have problems with Node v0.10.x and v0.12.x). At the moment it is v4.2.3 LTS.
+Make sure you have the [latest NodeJS LTS](https://nodejs.org/en/) version installed. This should be 8.x.x
 
 Run:
 
